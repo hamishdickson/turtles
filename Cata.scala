@@ -12,5 +12,7 @@ trait Cata {
   }
 
   def length[A](ls: List[A]): Int = cata(ls, 0, (_: A, b: Int) => 1 + b)
-  def filter[A](ls: List[A])(p: A => Boolean): List[A] = cata(ls, Nil, (a: A, b: List[A]) => if(p(a)) a :: b else b)
+
+  def filter[A](ls: List[A])(p: A => Boolean): List[A] =
+    cata(ls, Nil, (a: A, b: List[A]) => if(p(a)) a :: b else b)
 }
