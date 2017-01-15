@@ -6,7 +6,7 @@ import cats.implicits._
 
 import turtles.cata._
 
-object ListImplementations {
+object syntax {
   implicit val listCata = new Cata[List] {
     def cata[A,B](ls: List[A])(b: B)(f: (A,B) => B): B = ls.foldRight(b)(f)
   }
