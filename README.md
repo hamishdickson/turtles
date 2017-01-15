@@ -7,3 +7,28 @@
 ## Recursive data types for scala
 
 This project really is just for my own learning. Please have a look at [slamdata's matryoshka](https://github.com/slamdata/matryoshka) for working and facinating implementations of these ideas
+
+The implementations in this project are inspired by the classic paper, [Functional Programming with Bananas, Lenses, Envelopes and Barbed Wire](https://pdfs.semanticscholar.org/fec6/b29569eac1a340990bb07e90355efd2434ec.pdf)
+
+## Catamorphism
+
+```scala
+scala> import turtles.list.instances._
+import turtles.list.instances._
+
+scala> import turtles.list.syntax._
+import turtles.list.syntax._
+
+scala> List(1,2,3,4).cata(0)(_ + _)
+res1: Int = 10
+```
+
+## Anamorphism
+
+```scala
+scala> import turtles.list.instances._
+import turtles.list.instances._
+
+scala> ana(0)(_ > 10)(_ + 1)
+res2: List[Int] = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+```
