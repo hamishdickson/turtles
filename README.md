@@ -4,7 +4,6 @@
 
 — Hawking, 1988
 
-
-Recursive data types for scala
+## Recursive data types for scala
 
 This project really is just for my own learning. Please have a look at [slamdata's matryoshka](https://github.com/slamdata/matryoshka) for working and facinating implementations of these ideas

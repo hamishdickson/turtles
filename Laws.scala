@@ -1,4 +1,4 @@
-package laws
+package turtles.laws
 
 import org.scalacheck.Prop
 import org.scalatest.{Matchers, FlatSpec}
