@@ -7,7 +7,19 @@ inThisBuild(Seq(
   scalaVersion := "2.12.3-bin-typelevel-4"
 ))
 
-scalacOptions in ThisBuild ++= Seq(
+lazy val core = Project(id = "turtles-core", base = file("core"))
+  .settings(options: _*)
+  .settings(consoleOptions: _*)
+  .settings(deps: _*)
+
+lazy val laws = Project(id = "turtles-laws", base = file("laws"))
+  .settings(options: _*)
+  .settings(consoleOptions: _*)
+  .settings(deps: _*)
+  .dependsOn(core)
+
+// see https://tpolecat.github.io/2017/04/25/scalac-flags.html
+lazy val options = scalacOptions in ThisBuild ++= Seq(
   "-deprecation",                      // Emit warning and location for usages of deprecated APIs.
   "-encoding", "utf-8",                // Specify character encoding used by source files.
   "-explaintypes",                     // Explain type errors in more detail.
@@ -61,12 +73,12 @@ scalacOptions in ThisBuild ++= Seq(
   "-Xlint:strict-unsealed-patmat" // warn on inexhaustive matches against unsealed traits
 )
 
-scalacOptions in (Compile, console) ~= (_.filterNot(Set(
+lazy val consoleOptions = scalacOptions in (Compile, console) ~= (_.filterNot(Set(
   "-Ywarn-unused:imports",
   "-Xfatal-warnings"
 )))
 
-libraryDependencies ++= Seq(
+lazy val deps = libraryDependencies ++= Seq(
   "org.typelevel" %% "cats-core" % "1.0.0-MF"
 )
 
